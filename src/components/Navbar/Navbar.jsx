@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { IoIosArrowDown } from "react-icons/io";
 import { HiOutlineMenu, HiOutlineX } from "react-icons/hi";
+import Logo from "/logo.jpeg"; // <-- import your logo image
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,6 +12,14 @@ const Navbar = () => {
         {/* logo section */}
         <div>
           <p className="text-3xl lg:text-4xl font-semibold">ALINO</p>
+
+          {/* <Link to="/">
+            <img
+              src={Logo}
+              alt="ALINO Logo"
+              className="w-10 md:w-18 object-contain"
+            />
+          </Link> */}
         </div>
 
         {/* Menu for large screens */}

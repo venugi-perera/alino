@@ -45,9 +45,9 @@ const Footer = () => {
         {/* Contact & Social */}
         <div>
           <h2 className="text-2xl font-semibold mb-4">Contact Us</h2>
-          <p className="text-gray-400">123 Main Street, City, Country</p>
-          <p className="text-gray-400">+123 456 7890</p>
-          <p className="text-gray-400">contact@restaurant.com</p>
+          <p className="text-gray-400">11 Narborough Rd Leicester LE3 0LE</p>
+          <p className="text-gray-400">+44 7737 098045</p>
+          <p className="text-gray-400">alinokam2002@yahoo.fr</p>
           <div className="flex mt-4 space-x-4">
             <a
               href="#"
