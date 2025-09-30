@@ -1,29 +1,28 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { HiOutlineMenu, HiOutlineX } from "react-icons/hi";
-import Logo from "/logo.jpeg"; // <-- import your logo image
+import Logo from "/logo.jpeg"; // import your logo
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="py-4 lg:py-6 relative">
-      <div className="container flex justify-between items-center">
-        {/* logo section */}
-        <div>
-          <p className="text-3xl lg:text-4xl font-semibold">ALINO</p>
-
-          {/* <Link to="/">
+    <nav className="fixed top-0 left-0 w-full z-50 bg-white shadow">
+      <div className="container mx-auto flex justify-between items-center px-4 py-4 lg:py-6">
+        {/* Logo */}
+        <div className="flex items-center gap-2">
+          <Link to="/" className="flex items-center">
             <img
               src={Logo}
               alt="ALINO Logo"
-              className="w-10 md:w-18 object-contain"
+              className="w-12 h-12 object-contain"
             />
-          </Link> */}
+          </Link>
+          <p className="text-2xl lg:text-3xl font-semibold">ALINO</p>
         </div>
 
-        {/* Menu for large screens */}
-        <ul className="gap-8 hidden sm:flex">
+        {/* Desktop Menu */}
+        <ul className="hidden sm:flex gap-8">
           <li className="hover:border-b-2 border-primary uppercase">
             <Link to="/">Home</Link>
           </li>
@@ -38,53 +37,66 @@ const Navbar = () => {
           </li>
         </ul>
 
-        {/* Hamburger button for small screens */}
+        {/* Hamburger Icon (Mobile Only) */}
         <button
-          className="sm:hidden text-2xl"
-          onClick={() => setIsOpen(!isOpen)}
+          className="sm:hidden text-3xl focus:outline-none"
+          onClick={() => setIsOpen(true)}
+          aria-label="Open Menu"
         >
-          {isOpen ? <HiOutlineX /> : <HiOutlineMenu />}
+          <HiOutlineMenu />
         </button>
       </div>
 
-      {/* Sidebar for small screens */}
+      {/* Mobile Fullscreen Sidebar */}
       <div
-        className={`fixed top-0 right-0 h-full w-64 bg-white shadow-lg transform transition-transform duration-300 ${
-          isOpen ? "translate-x-0" : "translate-x-full"
-        } sm:hidden z-50`}
+        className={`fixed inset-0 bg-white z-50 transform transition-transform duration-300
+          ${isOpen ? "translate-x-0" : "translate-x-full"} sm:hidden`}
       >
-        <ul className="flex flex-col mt-20 gap-6 px-6">
-          <li className="hover:border-b-2 border-primary uppercase">
-            <Link to="/" onClick={() => setIsOpen(false)}>
+        {/* Header with Close Icon */}
+        <div className="flex justify-between items-center px-6 py-4 border-b border-gray-200">
+          <p className="text-2xl font-semibold">Menu</p>
+          <button
+            onClick={() => setIsOpen(false)}
+            className="text-3xl focus:outline-none"
+            aria-label="Close Menu"
+          >
+            <HiOutlineX />
+          </button>
+        </div>
+
+        {/* Nav Links */}
+        <ul className="flex flex-col mt-6 gap-6 px-6 text-lg font-medium">
+          <li>
+            <Link to="/" onClick={() => setIsOpen(false)} className="uppercase hover:text-primary">
               Home
             </Link>
           </li>
-          <li className="hover:border-b-2 border-primary uppercase">
-            <Link to="/menu" onClick={() => setIsOpen(false)}>
+          <li>
+            <Link to="/menu" onClick={() => setIsOpen(false)} className="uppercase hover:text-primary">
               Menu
             </Link>
           </li>
-          <li className="hover:border-b-2 border-primary uppercase">
-            <Link to="/about" onClick={() => setIsOpen(false)}>
+          <li>
+            <Link to="/about" onClick={() => setIsOpen(false)} className="uppercase hover:text-primary">
               About
             </Link>
           </li>
-          <li className="hover:border-b-2 border-primary uppercase">
-            <Link to="/contact" onClick={() => setIsOpen(false)}>
+          <li>
+            <Link to="/contact" onClick={() => setIsOpen(false)} className="uppercase hover:text-primary">
               Contact Us
             </Link>
           </li>
         </ul>
       </div>
 
-      {/* Overlay when sidebar is open */}
+      {/* Dark Overlay Behind Menu */}
       {isOpen && (
         <div
-          className="fixed inset-0 bg-black opacity-30 z-40"
+          className="fixed inset-0 bg-black bg-opacity-40 z-40 sm:hidden"
           onClick={() => setIsOpen(false)}
         />
       )}
-    </div>
+    </nav>
   );
 };
 
