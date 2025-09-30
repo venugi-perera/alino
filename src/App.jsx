@@ -16,6 +16,7 @@ import  TermsConditions from "../src/components/Term"
 import ScrollToTop from "../src/components/ScrollToTop"
 import AboutStory from "../src/components/AboutStory"
 import SeafoodSection from "../src/components/SeafoodSection";
+import Specialties from "../src/components/Specialties"
 const bgStyle = {
   // backgroundImage: `url(${BgImage})`,
   backgroundRepeat: "no-repeat",
@@ -57,6 +58,7 @@ const App = () => {
               <AboutStory />
               <DelightfulExperience />
             <SeafoodSection />
+            <Specialties />
               </>
                
               } />
