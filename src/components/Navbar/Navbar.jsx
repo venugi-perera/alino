@@ -7,8 +7,8 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 bg-white shadow">
-      <div className="container mx-auto flex justify-between items-center px-4 py-4 lg:py-6">
+    <nav className="py-4 lg:py-6 relative bg-white shadow">
+      <div className="container mx-auto flex justify-between items-center px-4">
         {/* Logo */}
         <div className="flex items-center gap-2">
           <Link to="/" className="flex items-center">
@@ -22,7 +22,7 @@ const Navbar = () => {
         </div>
 
         {/* Desktop Menu */}
-        <ul className="hidden sm:flex gap-8">
+        <ul className="gap-8 hidden sm:flex">
           <li className="hover:border-b-2 border-primary uppercase">
             <Link to="/">Home</Link>
           </li>
@@ -37,62 +37,49 @@ const Navbar = () => {
           </li>
         </ul>
 
-        {/* Hamburger Icon (Mobile Only) */}
+        {/* Hamburger for Mobile */}
         <button
-          className="sm:hidden text-3xl focus:outline-none"
-          onClick={() => setIsOpen(true)}
-          aria-label="Open Menu"
+          className="sm:hidden text-3xl"
+          onClick={() => setIsOpen(!isOpen)}
+          aria-label="Toggle Menu"
         >
-          <HiOutlineMenu />
+          {isOpen ? <HiOutlineX /> : <HiOutlineMenu />}
         </button>
       </div>
 
-      {/* Mobile Fullscreen Sidebar */}
+      {/* Sidebar */}
       <div
-        className={`fixed inset-0 bg-white z-50 transform transition-transform duration-300
+        className={`fixed top-0 right-0 h-full w-64 bg-white shadow-lg transform transition-transform duration-300 z-50
           ${isOpen ? "translate-x-0" : "translate-x-full"} sm:hidden`}
       >
-        {/* Header with Close Icon */}
-        <div className="flex justify-between items-center px-6 py-4 border-b border-gray-200">
-          <p className="text-2xl font-semibold">Menu</p>
-          <button
-            onClick={() => setIsOpen(false)}
-            className="text-3xl focus:outline-none"
-            aria-label="Close Menu"
-          >
-            <HiOutlineX />
-          </button>
-        </div>
-
-        {/* Nav Links */}
-        <ul className="flex flex-col mt-6 gap-6 px-6 text-lg font-medium">
-          <li>
-            <Link to="/" onClick={() => setIsOpen(false)} className="uppercase hover:text-primary">
+        <ul className="flex flex-col mt-20 gap-6 px-6">
+          <li className="hover:border-b-2 border-primary uppercase">
+            <Link to="/" onClick={() => setIsOpen(false)}>
               Home
             </Link>
           </li>
-          <li>
-            <Link to="/menu" onClick={() => setIsOpen(false)} className="uppercase hover:text-primary">
+          <li className="hover:border-b-2 border-primary uppercase">
+            <Link to="/menu" onClick={() => setIsOpen(false)}>
               Menu
             </Link>
           </li>
-          <li>
-            <Link to="/about" onClick={() => setIsOpen(false)} className="uppercase hover:text-primary">
+          <li className="hover:border-b-2 border-primary uppercase">
+            <Link to="/about" onClick={() => setIsOpen(false)}>
               About
             </Link>
           </li>
-          <li>
-            <Link to="/contact" onClick={() => setIsOpen(false)} className="uppercase hover:text-primary">
+          <li className="hover:border-b-2 border-primary uppercase">
+            <Link to="/contact" onClick={() => setIsOpen(false)}>
               Contact Us
             </Link>
           </li>
         </ul>
       </div>
 
-      {/* Dark Overlay Behind Menu */}
+      {/* Overlay */}
       {isOpen && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-40 z-40 sm:hidden"
+          className="fixed inset-0 bg-black bg-opacity-40 z-40"
           onClick={() => setIsOpen(false)}
         />
       )}

@@ -14,13 +14,15 @@ import Footer from "./components/Footer/Footer";
 import PrivacyPolicy from "../src/components/PrivacyPolicy"
 import  TermsConditions from "../src/components/Term"
 import ScrollToTop from "../src/components/ScrollToTop"
+import AboutStory from "../src/components/AboutStory"
+import SeafoodSection from "../src/components/SeafoodSection";
 const bgStyle = {
   // backgroundImage: `url(${BgImage})`,
   backgroundRepeat: "no-repeat",
   backgroundSize: "cover",
   backgroundPosition: "center",
 };
-
+import DelightfulExperience from "../src/components/DelightfulExperience"
 const App = () => {
   return (
     <Router>
@@ -49,7 +51,15 @@ const App = () => {
             <Route path="/menu" element={<MenuSection />} />
 
             {/* About page route (optional) */}
-            <Route path="/about" element={<AboutUs />} />
+            <Route path="/about" element={
+              <>
+              <AboutUs/>
+              <AboutStory />
+              <DelightfulExperience />
+            <SeafoodSection />
+              </>
+               
+              } />
 
             <Route path="/contact" element={<ContactUs />} />
               <Route path="/terms-conditions" element={<TermsConditions />} />
