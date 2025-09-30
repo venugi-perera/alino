@@ -1,69 +1,8 @@
-// import React from "react";
-// import Image1 from "../../assets/3.png";
-// import Image2 from "../../assets/4.png";
-// import Image3 from "../../assets/5.png";
-
-// const FoodData = [
-//   {
-//     image: Image1,
-//     rating: "⭐⭐⭐⭐⭐",
-//     price: "$10.99",
-//     name: "Food Name 1",
-//     desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-//   },
-//   {
-//     image: Image2,
-//     rating: "⭐⭐⭐⭐⭐",
-//     price: "$10.99",
-//     name: "Food Name 2",
-//     desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-//   },
-//   {
-//     image: Image3,
-//     rating: "⭐⭐⭐⭐⭐",
-//     price: "$10.99",
-//     name: "Food Name 3",
-//     desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-//   },
-// ];
-
-// const TopList = () => {
-//   return (
-//     <div className="container py-14">
-//       {/* header section */}
-//       <div className="text-center mb-12">
-//         <h1 className="text-4xl font-semibold">Top List</h1>
-//         <p>Our top list</p>
-//       </div>
-//       {/* card section */}
-//       <div className="grid grid-cols-1 sm:grid-cols-2  md:grid-cols-3 gap-8">
-//         {FoodData.map((item, index) => (
-//           <div
-//             key={index}
-//             className="bg-white/50 p-5 lg:p-6 rounded-3xl hover:scale-110 transition duration-300 "
-//           >
-//             <img
-//               src={item.image}
-//               alt=""
-//               className="w-60 sm:w-40  lg:w-[240px] mx-auto object-cover rounded-full img-shadow"
-//             />
-//             <div className="space-y-2">
-//               <p className="text-red-500">{item.rating}</p>
-//               <p className="text-lg font-semibold ">{item.name}</p>
-//               <p>{item.desc}</p>
-//               <p className="text-lg font-semibold">{item.price}</p>
-//             </div>
-//           </div>
-//         ))}
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default TopList;
-
-import React, { useState } from "react";
+"use client";
+import React, { useState, useEffect } from "react";
 import { IoStar } from "react-icons/io5";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const menuItems = [
   {
@@ -100,63 +39,87 @@ const menuItems = [
   },
 ];
 
-// const categories = ["All", "Appetizers", "Main Dishes", "Sides", "Desserts"];
-
 const MenuSection = () => {
-  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [selectedCategory] = useState("All");
 
   const filteredItems =
     selectedCategory === "All"
       ? menuItems
       : menuItems.filter((item) => item.category === selectedCategory);
 
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      once: false, // replay every time
+      mirror: true, // animate out on scroll up
+      easing: "ease-in-out",
+      offset: 100,
+    });
+
+    const refreshTimer = setTimeout(() => {
+      AOS.refreshHard();
+    }, 300);
+
+    window.addEventListener("resize", AOS.refresh);
+
+    return () => {
+      clearTimeout(refreshTimer);
+      window.removeEventListener("resize", AOS.refresh);
+    };
+  }, []);
+
   return (
-    <section className="py-16">
-      <div className="container mx-auto px-4">
+    <section className="py-24 bg-card">
+      <div className="container mx-auto px-6 lg:px-20">
         {/* Section Header */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-16" data-aos="fade-up">
           <h3
-            className="text-4xl font-bold text-foreground mb-4"
+            className="text-4xl lg:text-5xl font-bold text-foreground mb-6"
             style={{ fontFamily: "var(--font-heading)" }}
           >
             Top List
           </h3>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             A blend of cultures and tastes from across Africa, bringing together
             the best and most authentic flavors with chefs from all backgrounds.
           </p>
         </div>
 
         {/* Menu Items Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredItems.map((item) => (
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+          {filteredItems.map((item, index) => (
             <div
               key={item.id}
-              className="border rounded-lg overflow-hidden shadow hover:shadow-lg transition cursor-pointer"
+              data-aos="fade-up"
+              data-aos-delay={index * 150}
+              className="border rounded-xl overflow-hidden shadow-md hover:shadow-xl transform transition duration-500 ease-out hover:-translate-y-2 cursor-pointer bg-white"
             >
+              {/* Image */}
               <div className="relative">
                 <img
                   src={item.image}
                   alt={item.name}
-                  className="w-full h-48 object-cover"
+                  className="w-full h-56 object-cover transition duration-500 ease-out group-hover:scale-105"
                 />
-                <div className="absolute top-2 right-2 flex gap-1">
+                <div className="absolute top-3 right-3 flex gap-2 z-10">
                   {item.popular && (
-                    <span className="flex items-center bg-accent text-accent-foreground px-2 py-1 rounded text-xs font-semibold">
+                    <span className="flex items-center bg-yellow-500 text-black px-2 py-1 rounded text-xs font-semibold shadow-lg">
                       <IoStar className="mr-1 h-3 w-3" /> Popular
                     </span>
                   )}
                   {item.spicy && (
-                    <span className="bg-red-500 text-white px-2 py-1 rounded text-xs font-semibold">
+                    <span className="bg-red-600 text-white px-2 py-1 rounded text-xs font-semibold shadow-lg">
                       🌶️ Spicy
                     </span>
                   )}
                 </div>
               </div>
-              <div className="p-4">
-                <div className="flex justify-between items-start mb-2">
+
+              {/* Content */}
+              <div className="p-6">
+                <div className="flex justify-between items-start mb-3">
                   <h4
-                    className="text-lg font-semibold"
+                    className="text-xl font-semibold text-foreground"
                     style={{ fontFamily: "var(--font-heading)" }}
                   >
                     {item.name}
@@ -165,7 +128,7 @@ const MenuSection = () => {
                     {item.price}
                   </span>
                 </div>
-                <p className="text-sm text-muted-foreground mb-4">
+                <p className="text-sm text-muted-foreground leading-relaxed">
                   {item.description}
                 </p>
               </div>
