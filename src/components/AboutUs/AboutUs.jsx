@@ -1,122 +1,106 @@
-"use client";
-
 import React, { useEffect } from "react";
 import { IoMusicalNotes, IoHeart, IoRestaurant } from "react-icons/io5";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
-const AboutUs = () => {
+const AboutStory = () => {
   useEffect(() => {
     AOS.init({
       duration: 1000,
       once: false,
-      mirror: true,
-      anchorPlacement: "top-bottom",
-      offset: 100,
     });
-
-    const refreshTimer = setTimeout(() => {
-      AOS.refreshHard();
-    }, 300);
-
-    const handleResize = () => AOS.refresh();
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      clearTimeout(refreshTimer);
-      window.removeEventListener("resize", handleResize);
-    };
   }, []);
 
   return (
     <section
-      className="relative py-24 min-h-screen overflow-hidden"
-      style={{ backgroundColor: "#FFFFFF" }} // ✅ white base background
+      id="aboutstory"
+      className="relative py-20 overflow-hidden"
+      style={{ backgroundColor: "#FFFFFF" }}
     >
-      {/* Gradient overlay like Banner/Menu */}
+      {/* Gradient overlay */}
       <div className="absolute inset-0 pointer-events-none bg-gradient-to-r from-[#007A4D]/10 via-transparent to-[#FFB612]/10" />
 
-      <div className="container mx-auto px-8 lg:px-28 relative z-10">
-        <div className="grid md:grid-cols-2 gap-20 items-center">
-          {/* Left Text Section */}
-          <div data-aos="fade-right" data-aos-delay="100">
-            <h3
-              className="text-4xl lg:text-5xl font-bold mb-10 leading-snug"
-              style={{
-                fontFamily: "var(--font-heading)",
-                color: "#007A4D", // green heading
-              }}
+      <div className="container mx-auto px-4 lg:px-12 max-w-7xl relative z-10">
+        {/* Section Heading */}
+        <div className="text-center mb-14" data-aos="fade-up">
+          <h2
+            className="text-4xl lg:text-5xl font-bold mb-4"
+            style={{ fontFamily: "var(--font-heading)", color: "#000000" }}
+          >
+            About <span style={{ color: "#007A4D" }}>Our Story</span>
+          </h2>
+          <p className="text-lg lg:text-xl" style={{ color: "#4B5563" }}>
+            A Decade of Passion &amp; Flavor
+          </p>
+        </div>
+
+        {/* Content */}
+        <div className="grid md:grid-cols-2 gap-14 items-center">
+          {/* Text Content */}
+          <div className="space-y-6" data-aos="fade-right">
+            <p
+              className="flex items-start gap-4 text-lg lg:text-xl leading-relaxed"
+              style={{ color: "#000000" }}
             >
-              Our Story
-            </h3>
-            <div className="space-y-8 text-lg leading-relaxed">
-              <p
-                className="flex items-start space-x-4"
-                data-aos="fade-up"
-                data-aos-delay="150"
-                style={{ color: "#000000" }} // black text
-              >
-                <IoMusicalNotes
-                  className="h-7 w-7 mt-1 flex-shrink-0"
-                  style={{ color: "#FFB612" }} // yellow icon
-                />
-                <span>
-                  Alino began his journey in music, touring as a DJ and spreading
-                  joy through vibrant rhythms and performances.
-                </span>
-              </p>
-              <p
-                className="flex items-start space-x-4"
-                data-aos="fade-up"
-                data-aos-delay="250"
-                style={{ color: "#000000" }}
-              >
-                <IoHeart
-                  className="h-7 w-7 mt-1 flex-shrink-0"
-                  style={{ color: "#007A4D" }} // green icon
-                />
-                <span>
-                  His love for music seamlessly blended with his wife's culinary
-                  expertise, creating a unique fusion of culture and flavor.
-                </span>
-              </p>
-              <p
-                className="flex items-start space-x-4"
-                data-aos="fade-up"
-                data-aos-delay="350"
-                style={{ color: "#000000" }}
-              >
-                <IoRestaurant
-                  className="h-7 w-7 mt-1 flex-shrink-0"
-                  style={{ color: "#FFB612" }} // yellow icon
-                />
-                <span>
-                  Together, they founded Alino Restaurant, bringing authentic
-                  African dishes to the heart of the community.
-                </span>
-              </p>
-            </div>
+              <IoMusicalNotes
+                className="h-7 w-7 flex-shrink-0 mt-1"
+                style={{ color: "#FFB612" }}
+              />
+              <span>
+                For over a decade,{" "}
+                <span style={{ color: "#007A4D", fontWeight: "600" }}>
+                  Alino African Restaurant
+                </span>{" "}
+                has been Leicester's destination for authentic African cuisine.
+                Our story began with Alino’s love for music and entertainment,
+                traveling as a DJ, and his wife’s deep passion for the culinary
+                arts.
+              </span>
+            </p>
+
+            <p
+              className="flex items-start gap-4 text-lg lg:text-xl leading-relaxed"
+              style={{ color: "#000000" }}
+            >
+              <IoHeart
+                className="h-7 w-7 flex-shrink-0 mt-1"
+                style={{ color: "#007A4D" }}
+              />
+              <span>
+                Together, they created a unique dining experience that brings
+                the rhythm and soul of Africa to every plate. With ingredients
+                imported directly from the motherland, we ensure vibrant and
+                authentic flavors in every dish.
+              </span>
+            </p>
+
+            <p
+              className="flex items-start gap-4 text-lg lg:text-xl leading-relaxed"
+              style={{ color: "#000000" }}
+            >
+              <IoRestaurant
+                className="h-7 w-7 flex-shrink-0 mt-1"
+                style={{ color: "#FFB612" }}
+              />
+              <span>
+                Our cuisine is a celebration — a fusion of cultures and tastes
+                from across Africa, crafted by chefs who share one vision: to
+                bring you the most authentic African dining experience.
+              </span>
+            </p>
           </div>
 
-          {/* Right Image Section */}
+          {/* Image */}
           <div
-            className="relative group"
+            className="flex justify-center relative group"
             data-aos="fade-left"
-            data-aos-delay="200"
           >
             <img
               src="/image.png"
-              alt="Alino Restaurant Interior"
-              className="rounded-xl w-full h-[500px] object-cover 
-                         transform transition duration-500 ease-out
-                         group-hover:scale-105 group-hover:-translate-y-3
-                         hover:shadow-[0_0_30px_#007A4D] 
-                         active:shadow-[0_0_30px_#FFB612]"
+              alt="About Alino African Restaurant"
+              className="rounded-xl shadow-xl object-cover w-full h-[400px] transform transition duration-500 ease-out group-hover:scale-105 group-hover:-translate-y-2 hover:shadow-[0_0_30px_#007A4D] active:shadow-[0_0_30px_#FFB612]"
             />
-            {/* Overlay effect */}
-            <div className="absolute inset-0 rounded-xl bg-black opacity-0 
-                            group-hover:opacity-20 active:opacity-20 
-                            transition duration-500 ease-out" />
+            <div className="absolute inset-0 rounded-xl bg-black opacity-0 group-hover:opacity-10 transition duration-500 ease-out" />
           </div>
         </div>
       </div>
@@ -124,4 +108,4 @@ const AboutUs = () => {
   );
 };
 
-export default AboutUs;
+export default AboutStory;

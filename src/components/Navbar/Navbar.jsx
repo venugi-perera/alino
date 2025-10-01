@@ -29,9 +29,7 @@ const Navbar = () => {
           <li className="hover:border-b-2 border-primary uppercase">
             <Link to="/menu">Menu</Link>
           </li>
-          <li className="hover:border-b-2 border-primary uppercase">
-            <Link to="/about">About</Link>
-          </li>
+        
           <li className="hover:border-b-2 border-primary uppercase">
             <Link to="/contact">Contact Us</Link>
           </li>
@@ -63,11 +61,7 @@ const Navbar = () => {
               Menu
             </Link>
           </li>
-          <li className="hover:border-b-2 border-primary uppercase">
-            <Link to="/about" onClick={() => setIsOpen(false)}>
-              About
-            </Link>
-          </li>
+         
           <li className="hover:border-b-2 border-primary uppercase">
             <Link to="/contact" onClick={() => setIsOpen(false)}>
               Contact Us

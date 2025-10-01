@@ -40,8 +40,11 @@ const App = () => {
                 <>
                   <Hero />
                   <AboutUs />
+                  <DelightfulExperience />
                   <TopList />
+                  <SeafoodSection />
                   <Banner />
+                   <Specialties />
                   <OurServices />
                   <ContactUs />
                 </>
@@ -54,11 +57,10 @@ const App = () => {
             {/* About page route (optional) */}
             <Route path="/about" element={
               <>
-              <AboutUs/>
-              <AboutStory />
-              <DelightfulExperience />
-            <SeafoodSection />
-            <Specialties />
+              
+              
+            
+           
               </>
                
               } />

@@ -1,49 +1,62 @@
 import React from "react";
 import { FaFish, FaStore, FaUtensils } from "react-icons/fa";
-import { GiCrab } from "react-icons/gi"; // correct crab icon
+import { GiCrab } from "react-icons/gi";
 
 const SeafoodSection = () => {
   return (
-    <section className="bg-blue-50 py-16">
-      <div className="container mx-auto px-6 lg:px-12 max-w-7xl">
+    <section
+      className="py-16 relative overflow-hidden"
+      style={{ backgroundColor: "#FFFFFF" }} // ✅ saved white background
+    >
+      {/* Gradient overlay */}
+      <div className="absolute inset-0 pointer-events-none bg-gradient-to-r from-[#007A4D]/10 via-transparent to-[#FFB612]/10" />
+
+      <div className="container mx-auto px-6 lg:px-12 max-w-7xl relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
           <div>
-            <p className="uppercase tracking-widest text-blue-600 font-semibold flex items-center gap-2">
+            <p className="uppercase tracking-widest font-semibold flex items-center gap-2"
+               style={{ color: "#007A4D" }}>
               <FaFish /> Daily Fresh Kitchen
             </p>
-            <h2 className="mt-4 text-3xl lg:text-5xl font-bold text-gray-900 leading-tight relative inline-block">
+            <h2
+              className="mt-4 text-3xl lg:text-5xl font-bold leading-tight relative inline-block"
+              style={{ color: "#000000", fontFamily: "var(--font-heading)" }}
+            >
               Finest Seafood & Cozy Atmosphere
-              <span className="block w-24 h-[3px] bg-blue-500 mt-2 animate-pulse" />
+              <span className="block w-24 h-[3px] mt-2 animate-pulse"
+                    style={{ backgroundColor: "#FFB612" }} />
             </h2>
 
-            <p className="mt-6 text-gray-600 text-lg">
+            <p className="mt-6 text-lg leading-relaxed"
+               style={{ color: "#4B5563" }}>
               Embark on a journey towards excellence with us! Whether you're
-              seeking innovative solutions or expert guidance.
+              seeking innovative solutions or expert guidance, our seafood is
+              always served fresh with authentic flavors.
             </p>
 
             {/* Features */}
             <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div className="flex items-start gap-3">
-                <FaUtensils className="text-blue-500 text-3xl" />
+                <FaUtensils className="text-3xl" style={{ color: "#007A4D" }} />
                 <p className="text-gray-700">
                   Indulge in an Abundance of Fresh Seafood Delights.
                 </p>
               </div>
               <div className="flex items-start gap-3">
-                <GiCrab className="text-blue-500 text-3xl" />
+                <GiCrab className="text-3xl" style={{ color: "#FFB612" }} />
                 <p className="text-gray-700">
                   Experience the Bounty of the Ocean on Your Plate.
                 </p>
               </div>
               <div className="flex items-start gap-3">
-                <FaStore className="text-blue-500 text-3xl" />
+                <FaStore className="text-3xl" style={{ color: "#007A4D" }} />
                 <p className="text-gray-700">
                   Savor the Taste of the Coastline in Every Bite.
                 </p>
               </div>
               <div className="flex items-start gap-3">
-                <FaFish className="text-blue-500 text-3xl" />
+                <FaFish className="text-3xl" style={{ color: "#FFB612" }} />
                 <p className="text-gray-700">
                   A Culinary Celebration of the Finest Seafood.
                 </p>
@@ -52,9 +65,15 @@ const SeafoodSection = () => {
 
             {/* Button */}
             <div className="mt-8">
-              <button className="relative px-6 py-3 bg-gray-900 text-white font-semibold rounded-md hover:bg-gray-800 transition">
+              <button
+                className="relative px-6 py-3 font-semibold rounded-md shadow-lg hover:scale-105 transition-transform duration-300"
+                style={{ backgroundColor: "#007A4D", color: "#FFFFFF" }}
+              >
                 Read More
-                <span className="absolute left-0 bottom-0 h-[2px] w-full bg-blue-400 animate-ping" />
+                <span
+                  className="absolute left-0 bottom-0 h-[2px] w-full animate-ping"
+                  style={{ backgroundColor: "#FFB612" }}
+                />
               </button>
             </div>
           </div>
@@ -66,14 +85,28 @@ const SeafoodSection = () => {
               alt="Dining Experience"
               className="rounded-2xl shadow-lg w-full h-[450px] object-cover"
             />
+            {/* Slow rotating seafood plate */}
             <img
               src="/images/seafood-plate.png"
               alt="Seafood Plate"
-              className="absolute bottom-[-40px] right-[-40px] w-48 h-48 rounded-full animate-spin"
+              className="absolute bottom-[-40px] right-[-40px] w-48 h-48 rounded-full"
+              style={{
+                animation: "slowspin 20s linear infinite",
+              }}
             />
           </div>
         </div>
       </div>
+
+      {/* Keyframes for slow spin */}
+      <style>
+        {`
+          @keyframes slowspin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+          }
+        `}
+      </style>
     </section>
   );
 };
