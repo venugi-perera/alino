@@ -81,7 +81,7 @@ const Footer = () => {
           <p style={{ color: "#E5E5E5" }}>alinokam2002@yahoo.fr</p>
           <div className="flex mt-4 space-x-3">
             <a
-              href="https://facebook.com"
+              href="https://web.facebook.com/AlinoRestaurantBar/?locale=en_GB&_rdc=1&_rdr#"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-[#007A4D] hover:bg-[#FFB612] text-white p-2 rounded-full transition transform hover:scale-110"
