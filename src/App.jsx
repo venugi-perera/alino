@@ -17,6 +17,7 @@ import ScrollToTop from "../src/components/ScrollToTop"
 import AboutStory from "../src/components/AboutStory"
 import SeafoodSection from "../src/components/SeafoodSection";
 import Specialties from "../src/components/Specialties"
+import OrderOnline from "../src/components/OrderOnline"
 const bgStyle = {
   // backgroundImage: `url(${BgImage})`,
   backgroundRepeat: "no-repeat",
@@ -46,6 +47,7 @@ const App = () => {
                   <Banner />
                    <Specialties />
                   <OurServices />
+                  <OrderOnline />
                   <ContactUs />
                 </>
               }
