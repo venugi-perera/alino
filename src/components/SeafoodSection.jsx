@@ -133,13 +133,13 @@ const SeafoodSection = () => {
             data-aos-delay="200"
           >
             <img
-              src="/images/woman-eating.jpg"
+              src="/new.png"
               alt="Dining Experience"
               className="rounded-2xl shadow-lg w-full h-[450px] object-cover"
             />
             {/* Slow rotating seafood plate */}
             <img
-              src="/images/seafood-plate.png"
+              src="/plate.png"
               alt="Seafood Plate"
               className="absolute bottom-[-40px] right-[-40px] w-48 h-48 rounded-full"
               style={{

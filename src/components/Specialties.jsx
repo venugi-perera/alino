@@ -12,22 +12,22 @@ const Specialties = () => {
 
   const items = [
     {
-      img: "/images/lobster.jpg",
-      title: "Broiled Lobster Tails",
-      desc: "Roast Beef / Bone Marrow / Black Garlic / Mustard Seeds",
-      price: "£12.55",
+      img: "/food2.jpeg",
+      title: "Okra Soup",
+      desc: "Ladies finger or bhindi. This is an incredibly rich source health benefiting. Very delicious. Served with choice of your side",
+      price: "£12.99",
     },
     {
-      img: "/images/salmon.jpg",
-      title: "Baked Salmon Fillets Dijon",
-      desc: "Roast Beef / Bone Marrow / Black Garlic / Mustard Seeds",
-      price: "£12.55",
+      img: "/food1.jpeg",
+      title: "Egussi with Assorted Meat",
+      desc: "Special melon seeds cooked with selected African spices. Very delicious. Served with choice of your side.",
+      price: "£13.99",
     },
     {
-      img: "/images/shrimp.jpg",
-      title: "Grilled Shrimp Scampi",
-      desc: "Roast Beef / Bone Marrow / Black Garlic / Mustard Seeds",
-      price: "£12.55",
+      img: "/food3.jpeg",
+      title: "Fried Rice with Fish",
+      desc: "Savory fried rice with tender fish, offering a delightful blend of flavors in every bite.",
+      price: "£13.99",
     },
   ];
 
