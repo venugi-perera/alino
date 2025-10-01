@@ -17,8 +17,8 @@ const Hero = () => {
   useEffect(() => {
     // Initialize AOS
     AOS.init({
-      duration: 1000, // animation duration
-      once: true,     // only animate once
+      duration: 1000,
+      once: true,
       easing: "ease-in-out",
     });
 
@@ -48,36 +48,43 @@ const Hero = () => {
       <div className="absolute inset-0 bg-black/60 -z-5" />
 
       {/* Content */}
-      <div className="relative container h-full grid grid-cols-1 md:grid-cols-2 gap-8 z-10">
-        {/* text section */}
-        <div className="flex flex-col justify-center gap-8 text-center md:text-left text-white">
+      <div className="relative flex items-center justify-center h-full z-10">
+        <div className="flex flex-col justify-center items-center text-center gap-8 text-white px-4">
           <h1
-            key={currentIndex} // re-triggers fade on text change
-            className="text-4xl lg:text-6xl font-semibold drop-shadow-lg transition-opacity duration-1000"
+            key={currentIndex}
+            className="text-4xl lg:text-6xl font-bold drop-shadow-lg transition-opacity duration-1000"
             data-aos="fade-up"
+            style={{ color: "#FFB612" }}
           >
             {taglines[currentIndex]}
           </h1>
 
           <p
-            className="drop-shadow-md max-w-xl mx-auto md:mx-0"
+            className="max-w-2xl text-lg drop-shadow-md"
             data-aos="fade-up"
             data-aos-delay="200"
+            style={{ color: "#FFFFFF" }}
           >
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta
-            assumenda qui ipsam id officiis modi cumque minus dolores placeat
-            explicabo.
+            Welcome to our restaurant, where every dish is crafted with love and
+            passion. From authentic flavors to modern favorites, we serve meals
+            that bring people together and create lasting memories.
           </p>
 
           <div
-            className="flex gap-4 items-center md:justify-start justify-center"
+            className="flex gap-4 items-center justify-center"
             data-aos="zoom-in"
             data-aos-delay="400"
           >
-            <button className="primary-btn hover:scale-105 duration-200">
+            <button
+              className="px-6 py-3 rounded-lg font-semibold hover:scale-105 duration-200"
+              style={{ backgroundColor: "#007A4D", color: "#FFFFFF" }}
+            >
               Food Menu
             </button>
-            <button className="secondary-btn text-black hover:scale-105 duration-200">
+            <button
+              className="px-6 py-3 rounded-lg font-semibold hover:scale-105 duration-200"
+              style={{ backgroundColor: "#FFB612", color: "#000000" }}
+            >
               Book Table
             </button>
           </div>

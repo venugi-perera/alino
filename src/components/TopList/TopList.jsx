@@ -12,7 +12,7 @@ const menuItems = [
       "Traditional West African rice dish with aromatic spices, tomatoes, and your choice of chicken or beef",
     price: "£12.99",
     category: "Main Dishes",
-    image: "menu/jellof.png",
+    image: "/menu/jellof.png",
     spicy: true,
     popular: true,
   },
@@ -50,8 +50,8 @@ const MenuSection = () => {
   useEffect(() => {
     AOS.init({
       duration: 1000,
-      once: false, // replay every time
-      mirror: true, // animate out on scroll up
+      once: false,
+      mirror: true,
       easing: "ease-in-out",
       offset: 100,
     });
@@ -69,17 +69,26 @@ const MenuSection = () => {
   }, []);
 
   return (
-    <section className="py-24 bg-card">
-      <div className="container mx-auto px-6 lg:px-20">
+    <section
+      className="relative py-24 overflow-hidden"
+      style={{ backgroundColor: "#FFFFFF" }} // ✅ base background color
+    >
+      {/* Gradient overlay same as Banner */}
+      <div className="absolute inset-0 pointer-events-none bg-gradient-to-r from-[#007A4D]/10 via-transparent to-[#FFB612]/10" />
+
+      <div className="container mx-auto px-6 lg:px-20 relative z-10">
         {/* Section Header */}
         <div className="text-center mb-16" data-aos="fade-up">
           <h3
-            className="text-4xl lg:text-5xl font-bold text-foreground mb-6"
-            style={{ fontFamily: "var(--font-heading)" }}
+            className="text-4xl lg:text-5xl font-bold mb-6"
+            style={{ fontFamily: "var(--font-heading)", color: "#007A4D" }}
           >
             Top List
           </h3>
-          <p className="text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+          <p
+            className="text-lg lg:text-xl max-w-2xl mx-auto leading-relaxed"
+            style={{ color: "#000000" }}
+          >
             A blend of cultures and tastes from across Africa, bringing together
             the best and most authentic flavors with chefs from all backgrounds.
           </p>
@@ -92,23 +101,34 @@ const MenuSection = () => {
               key={item.id}
               data-aos="fade-up"
               data-aos-delay={index * 150}
-              className="border rounded-xl overflow-hidden shadow-md hover:shadow-xl transform transition duration-500 ease-out hover:-translate-y-2 cursor-pointer bg-white"
+              className="rounded-xl overflow-hidden cursor-pointer bg-white
+                         border border-gray-200
+                         transform transition duration-500 ease-out
+                         hover:-translate-y-3 
+                         hover:shadow-[0_0_30px_#007A4D]
+                         active:shadow-[0_0_30px_#FFB612]"
             >
               {/* Image */}
-              <div className="relative">
+              <div className="relative overflow-hidden">
                 <img
                   src={item.image}
                   alt={item.name}
-                  className="w-full h-56 object-cover transition duration-500 ease-out group-hover:scale-105"
+                  className="w-full h-56 object-cover transition duration-500 ease-out hover:scale-110"
                 />
                 <div className="absolute top-3 right-3 flex gap-2 z-10">
                   {item.popular && (
-                    <span className="flex items-center bg-yellow-500 text-black px-2 py-1 rounded text-xs font-semibold shadow-lg">
+                    <span
+                      className="flex items-center px-2 py-1 rounded text-xs font-semibold shadow-lg"
+                      style={{ backgroundColor: "#FFB612", color: "#000000" }}
+                    >
                       <IoStar className="mr-1 h-3 w-3" /> Popular
                     </span>
                   )}
                   {item.spicy && (
-                    <span className="bg-red-600 text-white px-2 py-1 rounded text-xs font-semibold shadow-lg">
+                    <span
+                      className="px-2 py-1 rounded text-xs font-semibold shadow-lg"
+                      style={{ backgroundColor: "#007A4D", color: "#FFFFFF" }}
+                    >
                       🌶️ Spicy
                     </span>
                   )}
@@ -119,16 +139,25 @@ const MenuSection = () => {
               <div className="p-6">
                 <div className="flex justify-between items-start mb-3">
                   <h4
-                    className="text-xl font-semibold text-foreground"
-                    style={{ fontFamily: "var(--font-heading)" }}
+                    className="text-xl font-semibold"
+                    style={{
+                      fontFamily: "var(--font-heading)",
+                      color: "#000000",
+                    }}
                   >
                     {item.name}
                   </h4>
-                  <span className="text-lg font-bold text-primary">
+                  <span
+                    className="text-lg font-bold"
+                    style={{ color: "#007A4D" }}
+                  >
                     {item.price}
                   </span>
                 </div>
-                <p className="text-sm text-muted-foreground leading-relaxed">
+                <p
+                  className="text-sm leading-relaxed"
+                  style={{ color: "#4B5563" }}
+                >
                   {item.description}
                 </p>
               </div>

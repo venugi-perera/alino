@@ -14,8 +14,8 @@ const ContactUs = () => {
   useEffect(() => {
     AOS.init({
       duration: 1000,
-      once: false,  // replay every scroll
-      mirror: true, // animate on scroll up
+      once: false,
+      mirror: true,
       offset: 100,
       easing: "ease-in-out",
     });
@@ -40,17 +40,23 @@ const ContactUs = () => {
   };
 
   return (
-    <section className="bg-card py-20 px-6 lg:px-20">
-      <div className="container mx-auto">
+    <section
+      className="relative py-20 px-6 lg:px-20 overflow-hidden"
+      style={{ backgroundColor: "#FFFFFF" }}
+    >
+      {/* Gradient overlay */}
+      <div className="absolute inset-0 pointer-events-none bg-gradient-to-r from-[#007A4D]/10 via-transparent to-[#FFB612]/10" />
+
+      <div className="container mx-auto relative z-10">
         {/* Header */}
         <div className="text-center mb-12" data-aos="fade-up">
           <h1
-            className="text-4xl lg:text-5xl font-extrabold text-foreground mb-4"
-            style={{ fontFamily: "var(--font-heading)" }}
+            className="text-4xl lg:text-5xl font-extrabold mb-4"
+            style={{ fontFamily: "var(--font-heading)", color: "#007A4D" }}
           >
             Contact Us
           </h1>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-lg max-w-2xl mx-auto" style={{ color: "#000000" }}>
             We’d love to hear from you! Reach out for reservations, questions, or feedback.
           </p>
         </div>
@@ -63,50 +69,69 @@ const ContactUs = () => {
             className="bg-white shadow-xl rounded-2xl p-8 transition hover:shadow-2xl"
             data-aos="fade-right"
           >
-            <h2 className="text-2xl font-semibold mb-6">Send us a message</h2>
+            <h2
+              className="text-2xl font-semibold mb-6"
+              style={{ color: "#000000" }}
+            >
+              Send us a message
+            </h2>
 
-            <label className="block mb-2 font-medium">Name</label>
+            {/* Name */}
+            <label className="block mb-2 font-medium" style={{ color: "#000000" }}>
+              Name
+            </label>
             <input
               type="text"
               name="name"
               value={formData.name}
               onChange={handleChange}
-              className="w-full mb-4 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+              className="w-full mb-4 p-3 rounded-lg bg-gray-100 focus:outline-none focus:ring-2 focus:ring-[#007A4D]"
               required
             />
 
-            <label className="block mb-2 font-medium">Email</label>
+            {/* Email */}
+            <label className="block mb-2 font-medium" style={{ color: "#000000" }}>
+              Email
+            </label>
             <input
               type="email"
               name="email"
               value={formData.email}
               onChange={handleChange}
-              className="w-full mb-4 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+              className="w-full mb-4 p-3 rounded-lg bg-gray-100 focus:outline-none focus:ring-2 focus:ring-[#007A4D]"
               required
             />
 
-            <label className="block mb-2 font-medium">Phone</label>
+            {/* Phone */}
+            <label className="block mb-2 font-medium" style={{ color: "#000000" }}>
+              Phone
+            </label>
             <input
               type="tel"
               name="phone"
               value={formData.phone}
               onChange={handleChange}
-              className="w-full mb-4 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+              className="w-full mb-4 p-3 rounded-lg bg-gray-100 focus:outline-none focus:ring-2 focus:ring-[#007A4D]"
             />
 
-            <label className="block mb-2 font-medium">Message</label>
+            {/* Message */}
+            <label className="block mb-2 font-medium" style={{ color: "#000000" }}>
+              Message
+            </label>
             <textarea
               name="message"
               value={formData.message}
               onChange={handleChange}
               rows="5"
-              className="w-full mb-6 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+              className="w-full mb-6 p-3 rounded-lg bg-gray-100 focus:outline-none focus:ring-2 focus:ring-[#007A4D]"
               required
             ></textarea>
 
+            {/* Button */}
             <button
               type="submit"
-              className="bg-primary text-white px-6 py-3 rounded-lg font-semibold shadow hover:bg-primary/90 transition-transform duration-300 hover:scale-105"
+              className="px-6 py-3 rounded-lg font-semibold shadow transition-transform duration-300 hover:scale-105 hover:shadow-[0_0_20px_#007A4D]"
+              style={{ backgroundColor: "#007A4D", color: "#FFFFFF" }}
             >
               Send Message
             </button>
@@ -114,21 +139,26 @@ const ContactUs = () => {
 
           {/* Contact Info */}
           <div
-            className="bg-gray-50 shadow-xl rounded-2xl p-8 transition hover:shadow-2xl"
+            className="bg-white shadow-xl rounded-2xl p-8 transition hover:shadow-2xl"
             data-aos="fade-left"
           >
-            <h2 className="text-2xl font-semibold mb-6">Get in touch</h2>
-            <p className="mb-3 text-muted-foreground">
-              <strong className="text-foreground">Address:</strong> 11 Narborough Rd Leicester LE3 0LE
+            <h2
+              className="text-2xl font-semibold mb-6"
+              style={{ color: "#000000" }}
+            >
+              Get in touch
+            </h2>
+            <p className="mb-3" style={{ color: "#4B5563" }}>
+              <strong style={{ color: "#007A4D" }}>Address:</strong> 11 Narborough Rd Leicester LE3 0LE
             </p>
-            <p className="mb-3 text-muted-foreground">
-              <strong className="text-foreground">Phone:</strong> +44 7737 098045
+            <p className="mb-3" style={{ color: "#4B5563" }}>
+              <strong style={{ color: "#007A4D" }}>Phone:</strong> +44 7737 098045
             </p>
-            <p className="mb-3 text-muted-foreground">
-              <strong className="text-foreground">Email:</strong> alinokam2002@yahoo.fr
+            <p className="mb-3" style={{ color: "#4B5563" }}>
+              <strong style={{ color: "#007A4D" }}>Email:</strong> alinokam2002@yahoo.fr
             </p>
-            <p className="mb-6 text-muted-foreground">
-              <strong className="text-foreground">Opening Hours:</strong> Mon-Sun: 10:00 AM - 10:00 PM
+            <p className="mb-6" style={{ color: "#4B5563" }}>
+              <strong style={{ color: "#007A4D" }}>Opening Hours:</strong> Mon-Sun: 10:00 AM - 10:00 PM
             </p>
 
             {/* Google Map */}
@@ -139,7 +169,7 @@ const ContactUs = () => {
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
-                allowFullScreen=""
+                allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
               ></iframe>
