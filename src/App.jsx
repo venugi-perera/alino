@@ -40,11 +40,11 @@ const App = () => {
               element={
                 <>
                   <Hero />
-                  <AboutUs />
+                  <AboutStory/>
                   <DelightfulExperience />
-                  <TopList />
+                
                   <SeafoodSection />
-                  <Banner />
+                  
                    <Specialties />
                   <OurServices />
                   <OrderOnline />

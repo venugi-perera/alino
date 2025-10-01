@@ -34,27 +34,39 @@ const DelightfulExperience = () => {
               className="text-4xl lg:text-5xl font-bold leading-snug"
               style={{ fontFamily: "var(--font-heading)", color: "#000000" }}
             >
-              Delightful <br /> Experience
+              A Decade of <br /> Passion & Flavor
             </h2>
 
             <p
-              className="text-lg lg:text-xl italic font-light"
-              style={{ color: "#4B5563" }}
+              className="text-base lg:text-lg leading-relaxed"
+              style={{ color: "#000000" }}
             >
-              “Everything is possible. We’ll make your stay unforgettable.”
+              For over a decade,{" "}
+              <span style={{ fontWeight: 600 }}>Alino African Restaurant</span>{" "}
+              has been Leicester's destination for authentic African cuisine.
+              Our story began with a unique blend of passions—Alino's love for
+              music and entertainment from his years traveling the country as a
+              DJ, and his wife's deep passion for the culinary arts.
             </p>
 
             <p
               className="text-base lg:text-lg leading-relaxed"
               style={{ color: "#000000" }}
             >
-              From traditional flavours influenced by local culture to
-              gastronomic delights that trot the world, we have always raised
-              the standard of hospitality through{" "}
-              <span style={{ color: "#007A4D", fontWeight: 600 }}>
-                Responsible Luxury
-              </span>
-              .
+              Together, they created something extraordinary: a dining
+              experience that brings the rhythm and soul of Africa to every
+              plate. We import our ingredients directly from the motherland,
+              ensuring the most authentic and vibrant flavors in every dish.
+            </p>
+
+            <p
+              className="text-base lg:text-lg leading-relaxed"
+              style={{ color: "#000000" }}
+            >
+              Our cuisine is a celebration—a blend of cultures and tastes from
+              across Africa, crafted by chefs from diverse backgrounds who share
+              one vision: to bring you the best and most authentic African
+              dining experience.
             </p>
 
             {/* Founder Signature */}
