@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
 import { HiOutlineMenu, HiOutlineX } from "react-icons/hi";
 import Logo from "/logo.jpeg"; // import your logo
 
@@ -51,10 +52,14 @@ const Navbar = () => {
             <Link to="/">Home</Link>
           </li>
           <li className="hover:border-b-2 border-primary uppercase">
-            <Link to="/menu">Menu</Link>
+            <HashLink smooth to="#menu">
+              Menu
+            </HashLink>
           </li>
           <li className="hover:border-b-2 border-primary uppercase">
-            <Link to="/contact">Contact Us</Link>
+            <HashLink smooth to="#contact">
+              Contact Us
+            </HashLink>
           </li>
         </ul>
 
@@ -82,14 +87,14 @@ const Navbar = () => {
             </Link>
           </li>
           <li className="hover:border-b-2 border-primary uppercase">
-            <Link to="/menu" onClick={() => setIsOpen(false)}>
+            <HashLink smooth to="#menu" onClick={() => setIsOpen(false)}>
               Menu
-            </Link>
+            </HashLink>
           </li>
           <li className="hover:border-b-2 border-primary uppercase">
-            <Link to="/contact" onClick={() => setIsOpen(false)}>
+            <HashLink smooth to="#contact" onClick={() => setIsOpen(false)}>
               Contact Us
-            </Link>
+            </HashLink>
           </li>
         </ul>
       </div>

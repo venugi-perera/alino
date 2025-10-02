@@ -49,7 +49,7 @@ const ContactUs = () => {
 
       <div className="container mx-auto relative z-10">
         {/* Header */}
-        <div className="text-center mb-12" data-aos="fade-up">
+        <div className="text-center mb-12" data-aos="fade-up" id="contact">
           <h1
             className="text-4xl lg:text-5xl font-extrabold mb-4"
             style={{ fontFamily: "var(--font-heading)", color: "#007A4D" }}
