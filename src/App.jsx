@@ -47,14 +47,16 @@ const App = () => {
                   
                    <Specialties />
                   <OurServices />
+                  <MenuSection />
                   <OrderOnline />
+
                   <ContactUs />
                 </>
               }
             />
 
             {/* Menu page route */}
-            <Route path="/menu" element={<MenuSection />} />
+         
 
             {/* About page route (optional) */}
             <Route path="/about" element={
