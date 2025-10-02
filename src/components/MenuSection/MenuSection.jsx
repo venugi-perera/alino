@@ -4,25 +4,15 @@ import { motion } from "framer-motion";
 import sectionsSeed from "./menu.json";
 
 // ---------- Utility ----------
-const chunkArray = (arr, size) => {
-  const chunks = [];
-  for (let i = 0; i < arr.length; i += size) {
-    chunks.push(arr.slice(i, i + size));
-  }
-  return chunks;
-};
-
 const paginateByHeight = (items, maxHeight = 550) => {
   const pages = [];
   let currentPage = [];
   let currentHeight = 0;
 
   items.forEach((item) => {
-    // detect small screen
     const isSmallScreen = window.innerWidth < 640; // Tailwind "sm" breakpoint
     const baseHeight = isSmallScreen ? 200 : 100;
 
-    // Estimate height based on description length
     const estimatedHeight =
       baseHeight +
       (item.description ? Math.min(item.description.length / 4, 100) : 0);
@@ -61,13 +51,13 @@ Page.displayName = "Page";
 
 // ---------- Specific Pages ----------
 const CoverPage = forwardRef(({ restaurant, tagline }, ref) => (
-  <Page ref={ref} className="bg-gradient-to-br from-amber-50 to-orange-100">
+  <Page ref={ref} className="bg-gradient-to-br from-[#007A4D]/10 to-[#FFB612]/10">
     <div className="flex h-full flex-col items-center justify-center text-center">
       <motion.h1
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="text-4xl sm:text-5xl font-extrabold tracking-tight text-[#68a879]"
+        className="text-4xl sm:text-5xl font-extrabold tracking-tight text-[#007A4D]"
       >
         {restaurant}
       </motion.h1>
@@ -99,7 +89,7 @@ const SectionPage = forwardRef(({ title, subtitle, items }, ref) => (
   <Page ref={ref}>
     <div className="flex h-full flex-col">
       <div className="mb-4">
-        <h2 className="text-2xl font-bold tracking-tight text-[#68a879]">
+        <h2 className="text-2xl font-bold tracking-tight text-[#007A4D]">
           {title}
         </h2>
         {subtitle && <p className="text-sm text-neutral-500">{subtitle}</p>}
@@ -142,7 +132,7 @@ SectionPage.displayName = "SectionPage";
 const InfoPage = forwardRef((_, ref) => (
   <Page ref={ref}>
     <div className="flex h-full flex-col">
-      <h2 className="text-2xl font-bold tracking-tight text-[#68a879]">
+      <h2 className="text-2xl font-bold tracking-tight text-[#007A4D]">
         About Us
       </h2>
       <p className="mt-2 text-sm text-neutral-700">
@@ -176,7 +166,7 @@ const InfoPage = forwardRef((_, ref) => (
 InfoPage.displayName = "InfoPage";
 
 const BackCoverPage = forwardRef((_, ref) => (
-  <Page ref={ref} className="bg-gradient-to-tr from-neutral-100 to-neutral-50">
+  <Page ref={ref} className="bg-gradient-to-tr from-[#007A4D]/10 to-[#FFB612]/10">
     <div className="flex h-full items-center justify-center">
       <p className="text-sm text-neutral-600">See you again soon 👋</p>
     </div>
@@ -188,7 +178,6 @@ BackCoverPage.displayName = "BackCoverPage";
 export default function MenuFlipbook() {
   const flipRef = useRef(null);
   const [page, setPage] = useState(0);
-  const itemsPerPage = 3; // max items per page
 
   const pages = useMemo(() => {
     const arr = [];
@@ -202,7 +191,7 @@ export default function MenuFlipbook() {
     );
 
     sectionsSeed.forEach((section) => {
-      const chunks = paginateByHeight(section.items, 500); // tune maxHeight
+      const chunks = paginateByHeight(section.items, 500);
       chunks.forEach((chunk, idx) => {
         arr.push(
           <SectionPage
@@ -229,85 +218,93 @@ export default function MenuFlipbook() {
   const goTo = (p) => flipRef.current?.pageFlip()?.flip(p);
 
   return (
-    <div className="mx-auto max-w-6xl px-3 py-6 sm:py-10">
-      {/* Header / Controls */}
-      <div className="mb-4 flex flex-col items-center justify-between gap-3 sm:mb-6 sm:flex-row">
-        <div>
-          <h1 className="text-2xl font-bold tracking-tight text-[#68a879]">
-            Restaurant Menu
-          </h1>
-        </div>
+    <section
+      className="relative py-16 sm:py-24"
+      style={{ backgroundColor: "#FFFFFF" }}
+    >
+      {/* Gradient Overlay */}
+      <div className="absolute inset-0 pointer-events-none bg-gradient-to-r from-[#007A4D]/10 via-transparent to-[#FFB612]/10" />
 
-        <div className="flex items-center gap-2">
-          <button
-            onClick={goPrev}
-            aria-label="Previous page"
-            className="rounded-2xl border px-3 py-2 text-sm shadow-sm transition hover:bg-neutral-50 active:scale-[0.98]"
-          >
-            ◀ Prev
-          </button>
-          <span className="select-none text-sm tabular-nums">
-            {String(page + 1).padStart(2, "0")} /{" "}
-            {String(total).padStart(2, "0")}
-          </span>
-          <button
-            onClick={goNext}
-            aria-label="Next page"
-            className="rounded-2xl border px-3 py-2 text-sm shadow-sm transition hover:bg-neutral-50 active:scale-[0.98]"
-          >
-            Next ▶
-          </button>
-        </div>
-      </div>
+      <div className="container mx-auto px-4 lg:px-12 max-w-7xl relative z-10">
+        {/* Header / Controls */}
+        <div className="mb-4 flex flex-col items-center justify-between gap-3 sm:mb-6 sm:flex-row">
+          <div>
+            <h1 className="text-2xl font-bold tracking-tight text-[#007A4D]">
+              Restaurant Menu
+            </h1>
+          </div>
 
-      {/* Book */}
-      <div className="mx-auto flex w-full max-w-5xl justify-center">
-        <HTMLFlipBook
-          width={520}
-          height={700}
-          minWidth={300}
-          maxWidth={650}
-          maxHeight={900}
-          size="stretch"
-          drawShadow={true}
-          flippingTime={700}
-          usePortrait={true}
-          startPage={0}
-          autoSize={true}
-          maxShadowOpacity={0.4}
-          showCover={true}
-          mobileScrollSupport={true}
-          onFlip={(e) => setPage(e.data)}
-          ref={flipRef}
-          className="[perspective:1800px]"
-        >
-          {pages.map((node, idx) => (
-            <div key={idx} className="h-full w-full">
-              {node}
-            </div>
-          ))}
-        </HTMLFlipBook>
-      </div>
-
-      {/* Quick Navigator */}
-      <div className="mx-auto mt-6 grid max-w-5xl grid-cols-2 gap-2 sm:grid-cols-4">
-        {sectionsSeed.map((s, i) => {
-          const target = i + 1; // first page of section after cover
-          const active = page === target;
-          return (
+          <div className="flex items-center gap-2">
             <button
-              key={s.id}
-              onClick={() => goTo(target)}
-              className={
-                "rounded-2xl border px-3 py-2 text-sm shadow-sm transition hover:bg-neutral-50 " +
-                (active ? "border-amber-400 ring-2 ring-amber-200" : "")
-              }
+              onClick={goPrev}
+              aria-label="Previous page"
+              className="rounded-2xl border px-3 py-2 text-sm shadow-sm transition hover:bg-neutral-50 active:scale-[0.98]"
             >
-              {s.title}
+              ◀ Prev
             </button>
-          );
-        })}
+            <span className="select-none text-sm tabular-nums">
+              {String(page + 1).padStart(2, "0")} /{" "}
+              {String(total).padStart(2, "0")}
+            </span>
+            <button
+              onClick={goNext}
+              aria-label="Next page"
+              className="rounded-2xl border px-3 py-2 text-sm shadow-sm transition hover:bg-neutral-50 active:scale-[0.98]"
+            >
+              Next ▶
+            </button>
+          </div>
+        </div>
+
+        {/* Book */}
+        <div className="mx-auto flex w-full max-w-5xl justify-center">
+          <HTMLFlipBook
+            width={520}
+            height={700}
+            minWidth={300}
+            maxWidth={650}
+            maxHeight={900}
+            size="stretch"
+            drawShadow={true}
+            flippingTime={700}
+            usePortrait={true}
+            startPage={0}
+            autoSize={true}
+            maxShadowOpacity={0.4}
+            showCover={true}
+            mobileScrollSupport={true}
+            onFlip={(e) => setPage(e.data)}
+            ref={flipRef}
+            className="[perspective:1800px]"
+          >
+            {pages.map((node, idx) => (
+              <div key={idx} className="h-full w-full">
+                {node}
+              </div>
+            ))}
+          </HTMLFlipBook>
+        </div>
+
+        {/* Quick Navigator */}
+        <div className="mx-auto mt-6 grid max-w-5xl grid-cols-2 gap-2 sm:grid-cols-4">
+          {sectionsSeed.map((s, i) => {
+            const target = i + 1; // first page of section after cover
+            const active = page === target;
+            return (
+              <button
+                key={s.id}
+                onClick={() => goTo(target)}
+                className={
+                  "rounded-2xl border px-3 py-2 text-sm shadow-sm transition hover:bg-neutral-50 " +
+                  (active ? "border-amber-400 ring-2 ring-amber-200" : "")
+                }
+              >
+                {s.title}
+              </button>
+            );
+          })}
+        </div>
       </div>
-    </div>
+    </section>
   );
 }
